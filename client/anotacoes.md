@@ -142,3 +142,31 @@ Configurando os loaders de fonte no webpack.config.js
     loader: 'url-loader?limit=10000&mimetype=image/svg+xml' 
 }   
 ```
+
+Instalar plugin para gerar CSS em separado no build e evitar FOUC (Flash of Unstyled Content)
+
+```
+$ npm install extract-text-webpack-plugin@versao --save-dev
+```
+
+Configurando o plugin extract-text-webpack-plugin
+
+```
+const extractTextPlugin = require('extract-text-webpack-plugin'); -> Importar o plugin
+```
+
+```
+plugins.push(new extractTextPlugin('styles.css')); -> Adicionar na lista de plugins
+```
+
+No array de regras:
+
+```
+    {
+        test: /\.css$/,
+        use: extractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader'
+        })
+    }
+```
