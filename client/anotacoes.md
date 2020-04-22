@@ -29,7 +29,8 @@ module.exports = {
     entry: './app-src/app.js', -> Ponto de entrada da aplicação (primeiro módulo carregado)
     output: { -> Configurações de saída
         filename: 'bundle.js', -> Nome do arquivo final que será gerado
-        path: path.resolve(__dirname, 'dist') -> Diretorio onde o arquivo final será gerado (__dirname é o diretório atual)
+        path: path.resolve(__dirname, 'dist'), -> Diretorio onde o arquivo final será gerado (__dirname é o diretório atual)
+        publicPath: 'dist' -> Diretório público acessado pelo Webpack Dev Server
     },
     module: { -> Regras para processaor os módulos
         rules: [ -> Lista com todas as regras para serem executadas
@@ -54,7 +55,7 @@ Criando um script no package.json para executar o Webpack:
 Instalar babili para minificação de arquivos (UglifyJS não suporte sintaxe do ES2015 - ES6 - para frente)
 
 ```
-$ npm install babili-webpack-plugin@versao --saved-ev
+$ npm install babili-webpack-plugin@versao --save-dev
 ```
 
 Loader vs Plugin:
@@ -65,4 +66,16 @@ Instalar pacote para definir variáveis de ambiente em qualquer sistema operacio
 
 ```
 $ npm install cross-env@versao --save-dev
+```
+
+Instalação do Webpack Dev Server
+
+```
+$ npm install webpack-dev-server@versao --save-dev
+```
+
+Script para rodar o Webpack Dev Server
+
+```
+ "start": "webpack-dev-server"
 ```
