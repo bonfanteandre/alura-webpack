@@ -178,3 +178,16 @@ Para isso podemos utilizar dois plugins
 ```
 $ npm install optimize-css-assets-webpack-plugin@versao cssnano@versao --save-dev
 ```
+
+Para lidar com dependências que ficam no "escopo global" precisamos utilizar um plugin que já vem com o webpack o Provide Plugin
+
+Para configurar ele precisamos alterar o arquivo webpack.config.js
+
+```
+    const webpack = require('webpack'); -> Importar o webpack
+
+    plugins.push(new webpack.ProvidePlugin({ -> Configurar as dependências globais
+        '$': 'jquery/dist/jquery.js',
+        'jQuery': 'jquery/dist/jquery.js'
+    }));
+```
