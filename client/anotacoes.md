@@ -40,6 +40,12 @@ module.exports = {
                 use: {
                     loader: 'babel-loader' -> Utilizar o loader do Babel para processar
                 }
+            },
+            {
+                test: /\.css$/,
+                use: {
+                    loader: 'stye-loader!css-loader' -> Loaders para arquivos CSS. "!" serve para executar mais de um (executa da direita para a esquerda)
+                }
             }
         ]
     }
@@ -78,4 +84,61 @@ Script para rodar o Webpack Dev Server
 
 ```
  "start": "webpack-dev-server"
+```
+
+Instalando o Bootstrap pelo npm
+
+```
+$ npm install bootstrap@versao --save
+```
+
+Importando o Boostrap na aplicação
+
+Como não estamos usando ./ ou ../ para acessar, os arquivos serão buscados dentro de node_modules
+
+```
+import 'bootstrap/dist/css/boostrap.css';
+import 'bootstrap/dist/css/boostrap-theme.css';
+```
+
+Para isso precisamos instalar loaders que lidam com CSS
+
+```
+$ npm install css-loader@versao style-loader@versao --save-dev
+```
+
+Após instalar, precisamos configurá-los no webpack.config.js
+
+```
+    {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+    }
+```
+
+Além disso, é necessário instalar loaders para as fontes
+
+```
+$ npm install url-loader@versao file-loader@versao --save-dev
+```
+
+Configurando os loaders de fonte no webpack.config.js
+
+```
+{ 
+    test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
+    loader: 'url-loader?limit=10000&mimetype=application/font-woff' 
+},
+{ 
+    test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
+    loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+},
+{ 
+    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
+    loader: 'file-loader' 
+},
+{ 
+    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
+    loader: 'url-loader?limit=10000&mimetype=image/svg+xml' 
+}   
 ```
