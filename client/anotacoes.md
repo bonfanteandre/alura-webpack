@@ -170,3 +170,11 @@ No array de regras:
         })
     }
 ```
+
+Após isso é necessário fazer uma configuração para que o arquivo CSS gerado seja minificado
+
+Para isso podemos utilizar dois plugins
+
+```
+$ npm install optimize-css-assets-webpack-plugin@versao cssnano@versao --save-dev
+```
