@@ -197,3 +197,20 @@ Plugin parar gerar inclusão de assets automaticamente
 ```
 $ npm install html-webpack-plugin@<versao> --save-dev
 ```
+
+Configurando o plugin no webpack.config.js
+
+```
+const htmlWebPackPlugin = require('html-webpack-plugin');
+
+plugins.push(new htmlWebPackPlugin({
+    hash: true, -> Hash para atualizar o cache
+    minify: {
+        html5: true,
+        collapseWhitespace: true,
+        removeComments: true
+    },
+    filename: 'index.html', -> Arquivo que irá gerar
+    template: __dirname + '/main.html' -> Template que irá pegar como base
+}));
+```
