@@ -191,3 +191,9 @@ Para configurar ele precisamos alterar o arquivo webpack.config.js
         'jQuery': 'jquery/dist/jquery.js'
     }));
 ```
+
+Plugin parar gerar inclusão de assets automaticamente
+
+```
+$ npm install html-webpack-plugin@<versao> --save-dev
+```
